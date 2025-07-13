@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model WalletNonce {
+  id        String   @id @default(uuid())
+  nonce     String   @unique
+  address   String   @db.VarChar(42)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Giftpack {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  image       String?
+  items       GiftpackItem[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+model GiftpackItem {
+  id          String   @id @default(uuid())
+  giftpackId  String
+  name        String
+  description String?
+  image       String?
+  quantity    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  giftpack    Giftpack @relation(fields: [giftpackId], references: [id])
+}
+

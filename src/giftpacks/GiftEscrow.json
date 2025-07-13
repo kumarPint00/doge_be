@@ -1,0 +1,189 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "GiftEscrow",
+  "sourceName": "contracts/GiftEscrow.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "giftId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "claimer",
+          "type": "address"
+        }
+      ],
+      "name": "GiftClaimed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "giftId",
+          "type": "uint256"
+        }
+      ],
+      "name": "GiftExpired",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "giftId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "GiftSent",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "giftId",
+          "type": "uint256"
+        }
+      ],
+      "name": "claimGift",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "gifts",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiryTimestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "claimed",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nextGiftId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "giftIds",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "refundExpired",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiryDays",
+          "type": "uint256"
+        }
+      ],
+      "name": "sendGift",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b506104b88061001f6000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806334bfca5c1461005c57806378cbf86c14610078578063b5ed694414610094578063d6065935146100b0578063de5da0cf146100e6575b600080fd5b61007660048036038101906100719190610236565b610104565b005b610092600480360381019061008d91906102b9565b610108565b005b6100ae60048036038101906100a99190610344565b61010b565b005b6100ca60048036038101906100c591906102b9565b610112565b6040516100dd97969594939291906103f8565b60405180910390f35b6100ee6101c1565b6040516100fb9190610467565b60405180910390f35b5050565b50565b5050505050565b60006020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060010154908060020154908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060040160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060050154908060060160009054906101000a900460ff16905087565b60015481565b600080fd5b600080fd5b600080fd5b600080fd5b600080fd5b60008083601f8401126101f6576101f56101d1565b5b8235905067ffffffffffffffff811115610213576102126101d6565b5b60208301915083602082028301111561022f5761022e6101db565b5b9250929050565b6000806020838503121561024d5761024c6101c7565b5b600083013567ffffffffffffffff81111561026b5761026a6101cc565b5b610277858286016101e0565b92509250509250929050565b6000819050919050565b61029681610283565b81146102a157600080fd5b50565b6000813590506102b38161028d565b92915050565b6000602082840312156102cf576102ce6101c7565b5b60006102dd848285016102a4565b91505092915050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000610311826102e6565b9050919050565b61032181610306565b811461032c57600080fd5b50565b60008135905061033e81610318565b92915050565b600080600080600060a086880312156103605761035f6101c7565b5b600061036e8882890161032f565b955050602061037f888289016102a4565b9450506040610390888289016102a4565b93505060606103a18882890161032f565b92505060806103b2888289016102a4565b9150509295509295909350565b6103c881610306565b82525050565b6103d781610283565b82525050565b60008115159050919050565b6103f2816103dd565b82525050565b600060e08201905061040d600083018a6103bf565b61041a60208301896103ce565b61042760408301886103ce565b61043460608301876103bf565b61044160808301866103bf565b61044e60a08301856103ce565b61045b60c08301846103e9565b98975050505050505050565b600060208201905061047c60008301846103ce565b9291505056fea26469706673582212206322a041af4715fab797ba7d325a7f1b676f7bb04bce7a032d6b4525b993820164736f6c634300081c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806334bfca5c1461005c57806378cbf86c14610078578063b5ed694414610094578063d6065935146100b0578063de5da0cf146100e6575b600080fd5b61007660048036038101906100719190610236565b610104565b005b610092600480360381019061008d91906102b9565b610108565b005b6100ae60048036038101906100a99190610344565b61010b565b005b6100ca60048036038101906100c591906102b9565b610112565b6040516100dd97969594939291906103f8565b60405180910390f35b6100ee6101c1565b6040516100fb9190610467565b60405180910390f35b5050565b50565b5050505050565b60006020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060010154908060020154908060030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060040160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060050154908060060160009054906101000a900460ff16905087565b60015481565b600080fd5b600080fd5b600080fd5b600080fd5b600080fd5b60008083601f8401126101f6576101f56101d1565b5b8235905067ffffffffffffffff811115610213576102126101d6565b5b60208301915083602082028301111561022f5761022e6101db565b5b9250929050565b6000806020838503121561024d5761024c6101c7565b5b600083013567ffffffffffffffff81111561026b5761026a6101cc565b5b610277858286016101e0565b92509250509250929050565b6000819050919050565b61029681610283565b81146102a157600080fd5b50565b6000813590506102b38161028d565b92915050565b6000602082840312156102cf576102ce6101c7565b5b60006102dd848285016102a4565b91505092915050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000610311826102e6565b9050919050565b61032181610306565b811461032c57600080fd5b50565b60008135905061033e81610318565b92915050565b600080600080600060a086880312156103605761035f6101c7565b5b600061036e8882890161032f565b955050602061037f888289016102a4565b9450506040610390888289016102a4565b93505060606103a18882890161032f565b92505060806103b2888289016102a4565b9150509295509295909350565b6103c881610306565b82525050565b6103d781610283565b82525050565b60008115159050919050565b6103f2816103dd565b82525050565b600060e08201905061040d600083018a6103bf565b61041a60208301896103ce565b61042760408301886103ce565b61043460608301876103bf565b61044160808301866103bf565b61044e60a08301856103ce565b61045b60c08301846103e9565b98975050505050505050565b600060208201905061047c60008301846103ce565b9291505056fea26469706673582212206322a041af4715fab797ba7d325a7f1b676f7bb04bce7a032d6b4525b993820164736f6c634300081c0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
