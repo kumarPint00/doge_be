@@ -46,11 +46,11 @@ export class AuthService {
     await this.prisma.walletNonce.delete({ where: { nonce } });
 
     
-    const token = jwt.sign(
-      { sub: address.toLowerCase() },
-      process.env.JWT_SECRET!,
-      { expiresIn: '1d' },
-    );
+      const token = jwt.sign(
+        { sub: address.toLowerCase() },
+        process.env.JWT_SECRET || 'default_secret_key',
+        { expiresIn: '1d' },
+      );
     return token;
   }
 }

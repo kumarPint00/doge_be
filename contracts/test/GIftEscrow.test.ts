@@ -62,7 +62,7 @@ describe('GiftEscrow', function () {
     await giftEscrow.sendGift(erc20.address, 0, ethers.utils.parseUnits('1', 18), recipient.address, 7);
     await expect(
       giftEscrow.connect(other).claimGift(0)
-    ).to.be.revertedWith('Not recipient');
+    ).to.be.revertedWith('Not the recipient');
   });
 
   it('refunds expired gifts to sender', async function () {
@@ -71,7 +71,7 @@ describe('GiftEscrow', function () {
 
     // Fast-forward 2 days
     await ethers.provider.send('evm_increaseTime', [2 * DAY]);
-    await ethers.provider.send('evm_mine');
+    await ethers.provider.send('evm_mine', []);
 
     const before = await erc20.balanceOf(owner.address);
     await giftEscrow.refundExpired([0]);
@@ -90,7 +90,7 @@ describe('GiftEscrow', function () {
     // Send second gift for refund
     await giftEscrow.sendGift(erc20.address, 0, amount, recipient.address, 1);
     await ethers.provider.send('evm_increaseTime', [2 * DAY]);
-    await ethers.provider.send('evm_mine');
+    await ethers.provider.send('evm_mine', []);
     await giftEscrow.refundExpired([1]);
     await expect(
       giftEscrow.refundExpired([1])
